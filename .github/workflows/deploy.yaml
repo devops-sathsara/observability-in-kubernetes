@@ -4,9 +4,13 @@ on:
   push:
     branches:
       - main
+    paths:
+      - "kubernetes-cluster/**"
   pull_request:
     branches:
       - main
+    paths:
+      - "kubernetes-cluster/**"
 
 concurrency: ${{ github.workflow }}
 
