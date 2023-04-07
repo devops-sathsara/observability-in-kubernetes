@@ -4,7 +4,7 @@ include {
 }
 
 terraform {
-  source = "git::https://github.com/devops-sathsara/gitops-infra.git//src/addons?ref=main"
+  source = "git::https://github.com/devops-sathsara/observability-in-kubernetes.git//src/addons?ref=main"
 }
 
 locals {
