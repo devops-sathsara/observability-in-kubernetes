@@ -1,3 +1,6 @@
+# Since version 1.31 the Jaeger Operator uses webhooks 
+# to validate Jaeger custom resources (CRs). 
+# This requires an installed version of the cert-manager.
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
