@@ -8,6 +8,8 @@ on:
     branches:
       - main
 
+concurrency: ${{ github.workflow }}
+
 jobs:
   setup:
     name: Terraform CI/CD
