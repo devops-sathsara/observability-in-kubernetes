@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - "kubernetes-cluster/**"
+      - ".github/workflows/deploy.yaml"
   pull_request:
     branches:
       - main
