@@ -13,7 +13,7 @@ spec:
     chart: jaeger-operator
   destination:
     server: https://kubernetes.default.svc
-    namespace: jaeger
+    namespace: observability  
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
