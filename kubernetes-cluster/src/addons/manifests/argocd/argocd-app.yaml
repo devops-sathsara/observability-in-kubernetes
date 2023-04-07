@@ -8,7 +8,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/devops-sathsara/gitops-manifests.git
+    repoURL: https://github.com/devops-sathsara/observability-in-kubernetes.git
     targetRevision: HEAD
     path: argocd-apps
   destination:
