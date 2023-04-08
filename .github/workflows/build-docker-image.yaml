@@ -25,6 +25,9 @@ jobs:
   Build:
     name: Build
     runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'        # Need for https://github.com/google-github-actions/auth#usage
+      id-token: 'write'       # Need for https://github.com/google-github-actions/auth#usage
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
