@@ -3,3 +3,5 @@ kind: Jaeger
 metadata:
   name: jaeger-all-in-one
   namespace: observability
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
