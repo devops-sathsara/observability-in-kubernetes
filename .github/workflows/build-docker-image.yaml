@@ -6,11 +6,13 @@ on:
       - main
     paths:
       - "demo-app/**"
+      - ".github/workflows/build-docker-image.yaml"
   pull_request:
     branches:
       - main
     paths:
       - "demo-app/**"
+      - ".github/workflows/build-docker-image.yaml"
 
 concurrency: ${{ github.workflow }}
 

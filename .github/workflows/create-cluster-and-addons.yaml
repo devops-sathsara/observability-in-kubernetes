@@ -6,12 +6,13 @@ on:
       - main
     paths:
       - "kubernetes-cluster/**"
-      - ".github/workflows/deploy.yaml"
+      - ".github/workflows/create-cluster-and-addons.yaml"
   pull_request:
     branches:
       - main
     paths:
       - "kubernetes-cluster/**"
+      - ".github/workflows/create-cluster-and-addons.yaml"
 
 concurrency: ${{ github.workflow }}
 
