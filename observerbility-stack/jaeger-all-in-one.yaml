@@ -4,4 +4,4 @@ metadata:
   name: jaeger-all-in-one
   namespace: observability
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/hook: PostSync
