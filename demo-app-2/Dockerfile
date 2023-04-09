@@ -1,13 +1,21 @@
-FROM eclipse-temurin:17-jdk-jammy
- 
-WORKDIR /app
+# For Java 8, try this
+# FROM openjdk:8-jdk-alpine
 
-COPY .mvn/ .mvn
-COPY mvnw pom.xml ./
+# For Java 11, try this
+FROM adoptopenjdk/openjdk11:alpine-jre
 
-RUN chmod +x ./mvnw
-RUN ./mvnw dependency:resolve
+# Refer to Maven build -> finalName
+ARG JAR_FILE=target/spring-boot-web.jar
 
-COPY src ./src
+# cd /opt/app
+WORKDIR /opt/app
 
-CMD ["./mvnw", "spring-boot:run"]
+# cp target/spring-boot-web.jar /opt/app/app.jar
+COPY ${JAR_FILE} app.jar
+
+# java -jar /opt/app/app.jar
+ENTRYPOINT ["java","-jar","app.jar"]
+
+## sudo docker run -p 8080:8080 -t docker-spring-boot:1.0
+## sudo docker run -p 80:8080 -t docker-spring-boot:1.0
+## sudo docker run -p 443:8443 -t docker-spring-boot:1.0
