@@ -19,8 +19,8 @@ concurrency: ${{ github.workflow }}
 env:
   PROJECT_ID: citric-shine-378115 # GCP project ID
   GAR_LOCATION: us-central1       # GCP Artifact Registry region
-  REPOSITORY: observerbility-app  # GCP Artifact Registry docker repository naame
-  IMAGE_NAME: observerbility-app  # Docker image name
+  REPOSITORY: observability-app  # GCP Artifact Registry docker repository naame
+  IMAGE_NAME: observability-app  # Docker image name
 
 
 jobs:
