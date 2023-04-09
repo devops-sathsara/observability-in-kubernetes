@@ -3,9 +3,9 @@ include {
   path = find_in_parent_folders()
 }
 
-#terraform {
-#  source = "git::https://github.com/devops-sathsara/observability-in-kubernetes.git//kubernetes-cluster/src/cluster?ref=main"
-#}
+terraform {
+  source = "git::https://github.com/devops-sathsara/observability-in-kubernetes.git//kubernetes-cluster/src/workload-identity?ref=main"
+}
 
 
 locals {
@@ -15,6 +15,6 @@ locals {
 inputs = merge(
   local.common_vars.inputs,
   {
-    gke_num_nodes   = 1
+    service_account_name   = "gh-workflow-sa"
   }
 )
