@@ -21,22 +21,22 @@ spec:
         ports:
         - name: http-port
           containerPort: 8080
-        readinessProbe:
-          httpGet:  
-            path: /
-            port: http-port
-          initialDelaySeconds: 5
-          periodSeconds: 5
-          timeoutSeconds: 10  
-          failureThreshold: 2
-        livenessProbe:
-          httpGet:  
-            path: /
-            port: http-port
-          initialDelaySeconds: 5
-          periodSeconds: 5
-          timeoutSeconds: 10 
-          failureThreshold: 10
+        # readinessProbe:
+        #   httpGet:  
+        #     path: /
+        #     port: http-port
+        #   initialDelaySeconds: 5
+        #   periodSeconds: 5
+        #   timeoutSeconds: 10  
+        #   failureThreshold: 2
+        # livenessProbe:
+        #   httpGet:  
+        #     path: /
+        #     port: http-port
+        #   initialDelaySeconds: 5
+        #   periodSeconds: 5
+        #   timeoutSeconds: 10 
+        #   failureThreshold: 10
 
 ---
 apiVersion: v1
