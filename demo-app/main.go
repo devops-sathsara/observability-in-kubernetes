@@ -1,3 +1,4 @@
+// This app is based on https://github.com/olliefr/docker-gs-ping
 package main
 
 import (

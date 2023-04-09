@@ -21,3 +21,15 @@ module "oidc" {
     }
   }
 }
+
+resource "google_artifact_registry_repository" "app" {
+  repository_id = var.artifact_registry_repo_name
+  location      = var.region
+  format        = "docker"
+}
+
+resource "google_artifact_registry_repository_iam_binding" "artifactregistry_writer" {
+  repository = google_artifact_registry_repository.app.name
+  members    = ["serviceAccount:${google_service_account.sa.email}"]
+  role       = "roles/artifactregistry.writer"
+}
