@@ -2,49 +2,49 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"log"
-	"net/http"
-	"os"
+	"time"
 
 	"go.opentelemetry.io/otel"
-	"go.opentelemetry.io/otel/exporters/otlp"
-	"go.opentelemetry.io/otel/exporters/otlp/otlpgrpc"
+	"go.opentelemetry.io/otel/exporters/otlp/otlptrace"
+	"go.opentelemetry.io/otel/sdk/resource"
 	"go.opentelemetry.io/otel/sdk/trace"
-	"go.opentelemetry.io/otel/semconv"
 )
 
 func main() {
-	// Create an OTLP exporter and register it as a trace provider.
 	ctx := context.Background()
-	exporter, err := otlp.NewExporter(ctx, otlpgrpc.NewDriver(
-		otlpgrpc.WithInsecure(),
-		otlpgrpc.WithEndpoint(os.Getenv("OTEL_EXPORTER_OTLP_ENDPOINT")),
-	))
-	if err != nil {
-		log.Fatal(err)
-	}
-	provider := trace.NewTracerProvider(
-		trace.WithSpanProcessor(
-			trace.NewBatchSpanProcessor(exporter),
-		),
-		trace.WithResource(
-			semconv.ServiceNameKey.String(os.Getenv("OTEL_SERVICE_NAME")),
-		),
+
+	// Create the OTLP exporter
+	exporter, err := otlptrace.New(
+		ctx,
+		otlptrace.WithEndpoint("localhost:55680"),
+		otlptrace.WithInsecure(),
 	)
-	otel.SetTracerProvider(provider)
-
-	// Set up the web server and start listening for requests.
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		ctx := r.Context()
-		tracer := otel.Tracer("my-go-app")
-		_, span := tracer.Start(ctx, "handleRequest")
-		defer span.End()
-
-		// Handle the request.
-		fmt.Fprintf(w, "Hello, world!\n")
-	})
-	if err := http.ListenAndServe(":8080", nil); err != nil {
-		log.Fatal(err)
+	if err != nil {
+		log.Fatalf("Failed to create OTLP exporter: %v", err)
 	}
+
+	// Create the tracer provider
+	tp := trace.NewTracerProvider(
+		trace.WithBatcher(exporter),
+		trace.WithResource(resource.NewWithAttributes(
+			otel.GetSemanticConventionAttributes(),
+			// Add additional attributes as necessary
+		)),
+	)
+
+	// Set the global tracer provider
+	otel.SetTracerProvider(tp)
+
+	// Create a tracer instance
+	tracer := otel.Tracer("example")
+
+	// Start a span
+	ctx, span := tracer.Start(ctx, "example-operation")
+	defer span.End()
+
+	// Simulate some work
+	time.Sleep(1 * time.Second)
+
+	log.Println("Example completed successfully")
 }
