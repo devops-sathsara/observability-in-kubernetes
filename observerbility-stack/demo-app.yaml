@@ -18,25 +18,28 @@ spec:
       - name: demo-app
         image: us-central1-docker.pkg.dev/citric-shine-378115/observability-app/observability-app:latest
         imagePullPolicy: Always
+        env:
+        - name: OTEL_EXPORTER_OTLP_ENDPOINT
+          value: http://otel-collector.observability.svc.cluster.local:4317
         ports:
         - name: http-port
           containerPort: 8080
-        # readinessProbe:
-        #   httpGet:  
-        #     path: /
-        #     port: http-port
-        #   initialDelaySeconds: 5
-        #   periodSeconds: 5
-        #   timeoutSeconds: 10  
-        #   failureThreshold: 2
-        # livenessProbe:
-        #   httpGet:  
-        #     path: /
-        #     port: http-port
-        #   initialDelaySeconds: 5
-        #   periodSeconds: 5
-        #   timeoutSeconds: 10 
-        #   failureThreshold: 10
+        readinessProbe:
+          httpGet:  
+            path: /
+            port: http-port
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 10  
+          failureThreshold: 2
+        livenessProbe:
+          httpGet:  
+            path: /
+            port: http-port
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 10 
+          failureThreshold: 10
 
 ---
 apiVersion: v1
