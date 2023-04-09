@@ -5,13 +5,13 @@ on:
     branches:
       - main
     paths:
-      - "demo-app/**"
+      - "demo-app-2/**"
       - ".github/workflows/build-docker-image.yaml"
   pull_request:
     branches:
       - main
     paths:
-      - "demo-app/**"
+      - "demo-app-2/**"
       - ".github/workflows/build-docker-image.yaml"
 
 concurrency: ${{ github.workflow }}
@@ -19,8 +19,8 @@ concurrency: ${{ github.workflow }}
 env:
   PROJECT_ID: citric-shine-378115 # GCP project ID
   GAR_LOCATION: us-central1       # GCP Artifact Registry region
-  REPOSITORY: observability-app  # GCP Artifact Registry docker repository naame
-  IMAGE_NAME: observability-app  # Docker image name
+  REPOSITORY: observability-app   # GCP Artifact Registry docker repository naame
+  IMAGE_NAME: observability-app   # Docker image name
 
 
 jobs:
@@ -55,7 +55,7 @@ jobs:
       - name: Push to Artifact Registry
         uses: docker/build-push-action@v2
         with:
-          context: demo-app
+          context: demo-app-2
           push: true
           tags: |
              ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPOSITORY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
