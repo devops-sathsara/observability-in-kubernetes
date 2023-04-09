@@ -18,6 +18,7 @@ spec:
       - name: demo-app
         image: us-central1-docker.pkg.dev/citric-shine-378115/observability-app/observability-app:latest
         imagePullPolicy: Always
+        # https://github.com/open-telemetry/opentelemetry-java/blob/main/sdk-extensions/autoconfigure/README.md
         env:
         - name: OTEL_TRACES_EXPORTER
           value: otlp
