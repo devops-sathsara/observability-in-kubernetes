@@ -1,4 +1,4 @@
-FROM golang:1.16-alpine
+FROM golang:1.19-alpine
 
 RUN apk --no-cache add curl git make musl-dev
 
