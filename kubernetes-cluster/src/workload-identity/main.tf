@@ -10,7 +10,7 @@ resource "google_project_iam_member" "project" {
 }
 
 module "oidc" {
-  source      = "../../modules/gh-oidc"
+  source      = "terraform-google-modules/github-actions-runners/google//modules/gh-oidc"
   project_id  = var.env_project_id
   pool_id     = "gh-pool"
   provider_id = "gh-provider"
