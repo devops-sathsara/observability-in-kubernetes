@@ -19,7 +19,11 @@ spec:
         image: us-central1-docker.pkg.dev/citric-shine-378115/observability-app/observability-app:latest
         imagePullPolicy: Always
         env:
-        - name: OTEL_EXPORTER_OTLP_ENDPOINT
+        - name: OTEL_SERVICE_NAME
+          value: demo-svc
+        - name: OTEL_RESOURCE_ATTRIBUTES
+          value: application=demo-app
+        - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
           value: http://otel-collector.observability.svc.cluster.local:4317
         ports:
         - name: http-port
