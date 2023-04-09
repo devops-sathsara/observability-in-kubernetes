@@ -29,7 +29,7 @@ resource "google_artifact_registry_repository" "app" {
 }
 
 resource "google_artifact_registry_repository_iam_binding" "artifactregistry_writer" {
-  repository = google_artifact_registry_repository.app.name
+  repository = google_artifact_registry_repository.app.id
   members    = ["serviceAccount:${google_service_account.sa.email}"]
   role       = "roles/artifactregistry.writer"
 }
