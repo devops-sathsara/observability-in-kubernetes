@@ -17,6 +17,7 @@ spec:
       containers: 
       - name: demo-app
         image: us-central1-docker.pkg.dev/citric-shine-378115/observability-app/observability-app:latest
+        imagePullPolicy: Always
         ports:
         - name: http-port
           containerPort: 8080
