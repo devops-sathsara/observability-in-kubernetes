@@ -38,10 +38,8 @@ jobs:
         id: auth
         uses: google-github-actions/auth@v0
         with:
-          token_format: access_token
           workload_identity_provider: projects/234610246542/locations/global/workloadIdentityPools/gh-pool/providers/gh-provider # this is the output provider_name from the TF module
           service_account: gh-workflow-sa@citric-shine-378115.iam.gserviceaccount.com # this is a SA email configured using the TF module with access to YOUR-GCS-BUCKET
-          access_token_lifetime: 300s
 
       - name: Login to Artifact Registry
         uses: docker/login-action@v1
