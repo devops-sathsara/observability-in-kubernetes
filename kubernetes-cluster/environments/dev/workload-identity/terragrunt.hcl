@@ -15,6 +15,8 @@ locals {
 inputs = merge(
   local.common_vars.inputs,
   {
-    service_account_name   = "gh-workflow-sa"
+    service_account_name  = "gh-workflow-sa"
+    github_username       = "sathsarasa"
+    github_repo_name      = "observability-in-kubernetes"
   }
 )
