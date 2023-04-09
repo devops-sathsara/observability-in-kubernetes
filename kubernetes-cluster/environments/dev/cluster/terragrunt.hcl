@@ -7,11 +7,14 @@ terraform {
   source = "git::https://github.com/devops-sathsara/observability-in-kubernetes.git//kubernetes-cluster/src/cluster?ref=main"
 }
 
-
 locals {
   common_vars = read_terragrunt_config(find_in_parent_folders("inputs.hcl"))
 }
  
+dependency "workload-identity" {
+  config_path = "../workload-identity"
+}
+
 inputs = merge(
   local.common_vars.inputs,
   {
