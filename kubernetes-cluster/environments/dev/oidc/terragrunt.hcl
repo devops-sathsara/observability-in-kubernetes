@@ -4,7 +4,7 @@ include {
 }
 
 terraform {
-  source = "git::https://github.com/devops-sathsara/observability-in-kubernetes.git//kubernetes-cluster/src/workload-identity?ref=main"
+  source = "git::https://github.com/devops-sathsara/observability-in-kubernetes.git//kubernetes-cluster/src/oidc?ref=main"
 }
 
 
