@@ -23,6 +23,8 @@ spec:
           value: demo-svc
         - name: OTEL_RESOURCE_ATTRIBUTES
           value: application=demo-app
+        - name: OTEL_EXPORTER_OTLP_ENDPOINT
+          value: http://otel-collector.observability.svc.cluster.local:4317
         - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
           value: http://otel-collector.observability.svc.cluster.local:4317
         ports:
